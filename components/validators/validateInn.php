@@ -14,7 +14,7 @@ class ValidateInn extends Validator
     {
         $inn = $model->$attribute;
         $len = strlen($inn);
-        if ($len !== 12 || $len !== 10) {
+        if (($len !== 12) && ($len !== 10)) {
             $this->addError($model, $attribute, \Yii::t('validate', 'Incorrect INN length'));
         }
         
@@ -30,12 +30,12 @@ class ValidateInn extends Validator
                10*$inn[3] + 3*$inn[4] + 5*$inn[5] + 
                 9*$inn[6] + 4*$inn[7] + 6*$inn[8] +
                 8*$inn[9]
-                ) % 11) % 10)) || ($inn[11] === (string) (((
+                ) % 11) % 10) || ($inn[11] !== (string) (((
                 3*$inn[0] +  7*$inn[1] + 2*$inn[2] +
                 4*$inn[3] + 10*$inn[4] + 3*$inn[5] +
                 5*$inn[6] +  9*$inn[7] + 4*$inn[8] +
                 6*$inn[9] +  8*$inn[10]
-                ) % 11) % 10)))) {            
+                ) % 11) % 10))))) {            
             $this->addError($model, $attribute, \Yii::t('validate', 'Incorrect INN checksum'));
         }
     }
