@@ -3,12 +3,12 @@
 //  in rules()   [['ogrn'], 'app\components\validators\validateOgrn'],
 // for test purpose use fake OGRN \ OGRNIP number 1111111111110 | 311111111111115
 
-namespace frontend\components\validators;
+namespace feldwebel\validators;
 
 use yii\validators\Validator;
 
 
-class ValidateOgrn extends Validator
+class OgrnValidator extends Validator
 {
     public function validateAttribute($model, $attribute)
     {

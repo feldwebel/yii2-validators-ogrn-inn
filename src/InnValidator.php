@@ -3,12 +3,11 @@
 //  in rules()   [['inn'], 'app\components\validators\validateInn'],
 // for test purpose use fake INN number 1234567894 or 123456789110
 
-namespace frontend\components\validators;
+namespace feldwebel\validators;
 
 use yii\validators\Validator;
 
-
-class ValidateInn extends Validator
+class InnValidator extends Validator
 {
     public function validateAttribute($model, $attribute)
     {
