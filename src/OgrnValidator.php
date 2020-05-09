@@ -39,4 +39,20 @@ class OgrnValidator extends Validator
                                                        (int) substr((substr($ogrn, 0, 14) % 13), -1),
         ];
     }
+	
+	public function init()
+    {
+        parent::init();
+        $this->registerTranslations();
+    }
+
+    public function registerTranslations() {
+        if (!isset(Yii::$app->get('i18n')->translations['validate*'])) {
+            Yii::$app->get('i18n')->translations['validate'] = [
+                'class' => 'yii\i18n\PhpMessageSource',
+                'basePath' => __DIR__ . '/messages',
+                'sourceLanguage' => 'en-US'
+            ];
+        }
+    }
 }
