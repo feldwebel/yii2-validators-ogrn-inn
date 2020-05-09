@@ -3,12 +3,12 @@
 //  in rules()   [['ogrn'], 'app\components\validators\validateOgrn'],
 // for test purpose use fake OGRN \ OGRNIP number 1111111111110 | 311111111111115
 
-namespace frontend\components\validators;
+namespace feldwebel\validators;
 
 use yii\validators\Validator;
 
 
-class ValidateOgrn extends Validator
+class OgrnValidator extends Validator
 {
     public function validateAttribute($model, $attribute)
     {
@@ -38,5 +38,21 @@ class ValidateOgrn extends Validator
             'realChecksum' => (strlen($ogrn) === 13) ? (int) substr((substr($ogrn, 0, 12) % 11), -1) :
                                                        (int) substr((substr($ogrn, 0, 14) % 13), -1),
         ];
+    }
+	
+	public function init()
+    {
+        parent::init();
+        $this->registerTranslations();
+    }
+
+    public function registerTranslations() {
+        if (!isset(Yii::$app->get('i18n')->translations['validate*'])) {
+            Yii::$app->get('i18n')->translations['validate'] = [
+                'class' => 'yii\i18n\PhpMessageSource',
+                'basePath' => __DIR__ . '/messages',
+                'sourceLanguage' => 'en-US'
+            ];
+        }
     }
 }

@@ -1,0 +1,22 @@
+{
+    "name": "feldwebel/yii2-validators-ogrn-inn",
+    "description": "Standalone валидаторы ОГРН/ОГРНИП и ИНН для yii2",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension","inn","ogrn"],
+    "license": "MIT",
+	"minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Daniel Tereschenko",
+            "email": "dan@tereschenko.info"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "~2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "feldwebel\\validators\\": "src/"
+        }
+    }
+}
