@@ -6,6 +6,7 @@
 namespace feldwebel\validators;
 
 use yii\validators\Validator;
+use Yii;
 
 class InnValidator extends Validator
 {
@@ -36,6 +37,22 @@ class InnValidator extends Validator
                 6*$inn[9] +  8*$inn[10]
                 ) % 11) % 10))))) {            
             $this->addError($model, $attribute, \Yii::t('validate', 'Incorrect INN checksum'));
+        }
+    }
+
+    public function init()
+    {
+        parent::init();
+        $this->registerTranslations();
+    }
+
+    public function registerTranslations() {
+        if (!isset(Yii::$app->get('i18n')->translations['validate*'])) {
+            Yii::$app->get('i18n')->translations['validate'] = [
+                'class' => 'yii\i18n\PhpMessageSource',
+                'basePath' => __DIR__ . '/messages',
+                'sourceLanguage' => 'en-US'
+            ];
         }
     }
 }
